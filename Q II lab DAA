@@ -16,7 +16,6 @@ int main()
             cin>>x;
             nums.push_back(x);
         }
-        unordered_map <int, int> mpp;
         int i,j;
         for(i = 2;i<n;i++)
         {
