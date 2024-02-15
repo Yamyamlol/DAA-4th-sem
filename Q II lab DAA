@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        vector<int> nums;
+        bool isFound = false;
+        for(int i = 0;i<n;i++)
+        {
+            int x;
+            cin>>x;
+            nums.push_back(x);
+        }
+        unordered_map <int, int> mpp;
+        for(int i = 0;i<n;i++)
+            mpp[nums[i]]++;
+        auto it = mpp.begin();
+        int i,j;
+        for(i = 0;i<n-1;i++)
+        {
+            for(j = i+1;j<n;j++)
+            {
+                it = mpp.find(nums[i]+nums[j]);
+                if( it != mpp.end())
+                {
+                    isFound = true;
+                    break;
+                }
+            }
+            if(isFound) break;
+        }
+        if(!isFound)
+            cout<<"No Sequence Found"<<endl;
+        else
+            cout<<i+1<<" "<<j+1<<" "<<find(nums.begin(), nums.end(), nums[i]+nums[j])-nums.begin()+1<<endl;
+    }
+}
