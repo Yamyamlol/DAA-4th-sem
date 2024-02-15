@@ -17,26 +17,26 @@ int main()
             nums.push_back(x);
         }
         unordered_map <int, int> mpp;
-        for(int i = 0;i<n;i++)
-            mpp[nums[i]]++;
-        auto it = mpp.begin();
         int i,j;
-        for(i = 0;i<n-1;i++)
+        for(i = 2;i<n;i++)
         {
-            for(j = i+1;j<n;j++)
+            int left = 0, right = i-1;
+            while(left<right)
             {
-                it = mpp.find(nums[i]+nums[j]);
-                if( it != mpp.end())
+                if(nums[i] == nums[left]+nums[right])
                 {
                     isFound = true;
+                    cout<<left+1<<" "<<right+1<<" "<<i+1<<endl;
                     break;
                 }
+                else if(nums[left]+nums[right] < nums[i])
+                    left++;
+                else
+                    right--;
             }
             if(isFound) break;
         }
         if(!isFound)
             cout<<"No Sequence Found"<<endl;
-        else
-            cout<<i+1<<" "<<j+1<<" "<<find(nums.begin(), nums.end(), nums[i]+nums[j])-nums.begin()+1<<endl;
     }
 }
